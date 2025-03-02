@@ -14,7 +14,7 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
-        const res = await fetch("https://serenitybot-backend.vercel.app/", {
+        const res = await fetch("https://serenitybot-backend.vercel.app/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message })
