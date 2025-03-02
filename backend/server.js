@@ -9,8 +9,14 @@ const app = express();
 const PORT = 3000; // Must match frontend request URL
 
 app.use(express.json()); // Parse JSON requests
-app.use(cors()); // Allow frontend to access backend
+const corsOptions = {
+  origin: 'https://botspeaks.vercel.app/', // Replace with your frontend domain
+  methods: ['GET', 'POST'], // Allowed HTTP methods
+  credentials: true, // Allow cookies and credentials
+  optionsSuccessStatus: 200 // Legacy browsers (IE11) may choke on 204
+};
 
+app.use(cors(corsOptions)); // Apply CORS with options
 const API_KEY = process.env.API_KEY; // Store API key in .env
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
